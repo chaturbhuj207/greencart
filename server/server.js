@@ -21,12 +21,16 @@ await connectCloudinary();
 // allowed miltiple origins
 const allowedOrigins = ['http://localhost:5173', 'https://greencart-bice-nu.vercel.app'];
 
-app.post(
-    '/stripe',
-    express.raw({ type: 'application/json' }),
-    stripeWebhook
-);
-  
+// app.post(
+//     '/stripe',
+//     express.raw({ type: 'application/json' }),
+//     stripeWebhook
+// );
+app.post('/stripe', express.raw({ type: 'application/json' }), (req, res) => {
+    console.log("🛑 Stripe webhook called");
+    res.json({ received: true });
+});
+
 
 // middleware config 
 app.use(express.json());
